@@ -1,10 +1,13 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 import Header from "@/components/header";
+import { ConvexClientProvider } from "./ConvexClientProvider";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 export const metadata = {
-  title: "SpottX",
-  description: "Discover and create amazing events with SpottX",
+  title: "SpotX",
+  description: "Discover and create amazing events with SpotX",
 };
 
 export default function RootLayout({ children }) {
@@ -19,14 +22,22 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
+               <ClerkProvider
+                appearance={{
+                  theme: dark,
+                }}
+               >
+            <ConvexClientProvider>
+               
+             
         {/* Header */}
         <Header/>
         
         <main className="relative min-h-screen container mx-auto pt-40 md:pt-32 ">
           {/*glow*/}
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"/>
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"/>
+            <div className="absolute top-0 left-1/5 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"/>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-600/20 rounded-full blur-3xl"/>
 
           </div>
 
@@ -34,10 +45,11 @@ export default function RootLayout({ children }) {
 
            {/* Footer */}
            <footer className="border-t boader-gray-800/50 py-8 px-6 max-w-7xl mx-auto">
-            <div className="text-sm text-gray-400">Made with ❤️ by SpottX</div>
+            <div className="text-sm text-gray-400">Made with ❤️ by SpotX</div>
            </footer>
           </main>
-
+ </ConvexClientProvider>
+ </ClerkProvider>
        </ThemeProvider>
       </body>
     </html>
